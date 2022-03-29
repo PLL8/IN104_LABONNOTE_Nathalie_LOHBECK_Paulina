@@ -3,9 +3,7 @@
 #include <stdbool.h>
 
 //Coucou paupau comment vas-tu ?
-//ça marche paaaas
-//Very well my friend! Et toi?
-//very good
+//je modifie
 
 
 #define taille (9) //on définie la taille de la matrice
