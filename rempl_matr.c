@@ -1,0 +1,1 @@
+//fonction qui remplie les sousmatrices non diagonales
