@@ -2,10 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-//Coucou paupau comment vas-tu ?
-//ça marche paaaas
-//Very well my friend! Et toi?
-//very good
+niudbse olgéyec cjsd fgiugedae
+
 
 
 #define taille (9) //on définie la taille de la matrice
