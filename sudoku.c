@@ -3,7 +3,6 @@
 #include <stdbool.h>
 
 
-
 #define taille (9) //on définie la taille de la matrice
 #define RAND_MAX (9) //on définie le chiffre max prie par la variable aléatoire
 
@@ -25,9 +24,12 @@ int remplissage_3 (int tp){ //on a tp = taille/3
 	for (int i = 0; i<tp; i++){
 		for (int j= 0; j<tp; j++){
 			k = rand();
-			if (compare(list,tp,k) == true){
+			if (compare(list,tp,k) == false){
 			areap[i][j] = rand();
+			}
+			else {}
 		}
+
 	}
 
 }
