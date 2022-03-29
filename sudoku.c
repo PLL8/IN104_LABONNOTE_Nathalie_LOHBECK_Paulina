@@ -2,8 +2,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+<<<<<<< HEAD
 niudbse olgéyec cjsd fgiugedae
 
+=======
+//Coucou paupau comment vas-tu ?
+//je modifie
+>>>>>>> cc3b30c09512d59a95a417bcb6ee885a4737bd36
 
 
 #define taille (9) //on définie la taille de la matrice
