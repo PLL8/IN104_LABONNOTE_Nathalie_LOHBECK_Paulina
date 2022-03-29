@@ -3,6 +3,8 @@
 #include <stdbool.h>
 
 //Coucou paupau comment vas-tu ?
+//ça marche paaaas
+
 
 #define taille (9) //on définie la taille de la matrice
 #define RAND_MAX (9) //on définie le chiffre max prie par la variable aléatoire
