@@ -8,6 +8,9 @@
 
 //fonction qui remplie les sousmatrices non diagonales
 
+
+
+
 void rempli_case(int* matrice, int i, int j)
 /*
 rempli la case i,j de la matrice en testant les lignes, les colones et le carreau (il faut se placer i,j modulo 3 pour trouver le carreau)
@@ -18,6 +21,11 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 
 	bool rempli=false;	//reste faux tant que la case n'a pas encore été remplie
 	bool exist=false;	//variable qui devient true si le chiffre qu'on cherche a place existe déja dans la ligne, colonne ou carreau. 
+
+	if matrice[i][j]!=0
+	{
+		rempli=true;
+	}
 
 	int elem;	//le nombre qu'on teste
 
@@ -67,7 +75,8 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 
 	if compt==OP_MAX
 	{
-		printf("Error. Boucle échouée.")
+		printf("Error. Boucle échouée.");
+		//break;
 	}
 
 }
@@ -77,13 +86,36 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 void sous_matrice(int* matrice, int carreau)
 /*
 fonction qui prend la grande matrice et se place dans le carreau indiqué 
-matrice: 1 2 3 
-		 4 5 6
-		 7 8 9
+matrice: 0 1 2 
+		 3 4 5
+		 6 7 8
 puis rempli le sous carreau en examinant les lignes et colones
 */
 {
+	int line = carreau / 3;
+	int colo = carreau % 3;
 
-
-
+	for (int i=0; i<3; i++)
+		{
+			for (int j=0; j<3; j++)
+			{
+				rempli_case(matrice, 3*line + i, 3*colo + j);
+			}
 }
+
+
+
+void rempli_matri(int* matrice)
+/*
+rempli les matrices non diagonales
+*/
+{
+	sous_matrice(matrice, 1);
+	sous_matrice(matrice, 2);
+	sous_matrice(matrice, 3);
+	sous_matrice(matrice, 5);
+	sous_matrice(matrice, 6);
+	sous_matrice(matrice, 7);
+}
+
+
