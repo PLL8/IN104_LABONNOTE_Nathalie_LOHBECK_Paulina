@@ -2,11 +2,18 @@
 #include <stdlib.h>
 
 
-#define RAND_MAX 8
+#define MAX 9
 #define OP_MAX 100
 
 
 //fonction qui remplie les sousmatrices non diagonales
+
+
+int random() {
+    srand(time(NULL));
+    printf("%d\n", rand() % MAX + 1);
+    return (0);
+}
 
 
 
@@ -33,7 +40,7 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 
 	while (rempli==false)&&(compt<OP_MAX)
 	{
-		elem=rand()+1;
+		elem=random();
 
 		for (int k=1; k<10; k++)
 		{
