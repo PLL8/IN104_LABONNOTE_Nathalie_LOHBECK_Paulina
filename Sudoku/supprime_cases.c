@@ -3,6 +3,8 @@
 #include <stdbool.h>
 
 
+
+
 #define taille 9 
 
 //fonction qui supprmie un certain nombre d éléments de la matrice
@@ -26,7 +28,6 @@ int* supprime(int k, int* ligne, int i){ //i = dimension de la ligne
 		if (ligne[c]!=0){
 			ligne[c] = 0;
 			k--;
-			printf("%d\n", k);
 		}
 	}
 	return(ligne);
@@ -34,15 +35,18 @@ int* supprime(int k, int* ligne, int i){ //i = dimension de la ligne
 
 
 //fonction qui parcours la matrice
-/*int matrice_trou (int t, int k, int area){ //t = taille de la matrice et k = le nombre de cases à supprimer par ligne
+int** matrice_trou (int t, int k, int** area){ //t = taille de la matrice et k = le nombre de cases à supprimer par ligne
 	for (int i = 0; i<t; i++){
 		area[i] = supprime(k, area[i], t);
 	}
 	return(area);
-}*/
+}
 
 int main(){
 	int t = taille;
+	
+	
+
 	int k = 3;
 	int* ligne = malloc(t*sizeof(int));
 	for (int i =0; i<9; i++){ligne[i] = 1;}

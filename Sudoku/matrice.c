@@ -4,18 +4,40 @@
 #include <stdbool.h>
 
 #define taille (9) //on définie la taille de la matrice
-#define RAND_MAX  //la valeur maximale renvoyée par int rand ()
 
-int** matrice_vierge (int t, int** area){
+
+
+//Fonction qui affiche la matrice
+void affichage(int t, int** matrice){
+	for (int i =0; i<t; i++){
+		for (int j =0; j<t; j++){
+			printf("%d ", matrice[i][j]);
+		}
+		printf("\n");
+	}
+
+}
+
+//crée la matrice de 0
+int** matrice_vierge (int t){
+	int** area = malloc(t*sizeof(int*));
+	for (int i = 0; i<t; i++){
+		area[i] = malloc(t*sizeof(int));
+	}
+
 	for (int i =0; i<t; i++){
 		for (int j = 0; j<t; j++){
 			area[i][j] = 0;
 		}
 	}
+	return(area);
+
 }
 
 
-//Fonction intérmédiaire qui retourne true si l'entier est déjà présent dans la liste
+
+
+/*//Fonction intérmédiaire qui retourne true si l'entier est déjà présent dans la liste
 bool comparaison(int* liste, int k, int t){
 	for (int i = 0; i<t; i++){
 		if(liste[i] == k){
@@ -27,7 +49,8 @@ bool comparaison(int* liste, int k, int t){
 
 
 //Fonction qui remplie aléatoirement une matrice
-void matrce_alea(int t, int* ligne){ //ici t=taille --> 9 cases dans la sous matrices
+int** matrce_alea(int t){ //ici t=taille --> 9 cases dans la sous matrices
+	int* ligne = malloc(taille*sizeof(int)); 
 	srand(time(NULL)); //permet d'initialiser pour pouvoir utiliser la fonction rand
 	int k;
 	int i = 0; //on initialise l'endroit où on se place dans la matrice --> pour l'instant on crée juste une liste que l'on transformera en matrice après
@@ -40,11 +63,14 @@ void matrce_alea(int t, int* ligne){ //ici t=taille --> 9 cases dans la sous mat
 	}
 
 }
-
+*/
 
 int main (){
-	int* ligne = malloc(taille*sizeof(int));
-	matrice_alea(taille, ligne);
-	printf("%d", ligne[2]);
-}	
+	int t = taille;
+	int** area = matrice_vierge(t);
+	affichage(t, area);
+
+}
+
+
 
