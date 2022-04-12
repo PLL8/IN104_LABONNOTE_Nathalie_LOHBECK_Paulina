@@ -6,7 +6,7 @@
 #define taille (9) //on définie la taille de la matrice
 #define RAND_MAX  //la valeur maximale renvoyée par int rand ()
 
-void matrice_vierge (int t, int* area){
+int** matrice_vierge (int t, int** area){
 	for (int i =0; i<t; i++){
 		for (int j = 0; j<t; j++){
 			area[i][j] = 0;
