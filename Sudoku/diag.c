@@ -14,16 +14,16 @@ int aleatoire() {
 }
 
 
-void rempli_diag_case(int* matrice, int carreau, int i, int j)
+void rempli_diag_case(int** matrice, int carreau, int i, int j)
 /*
 rempli la case i,j de la sous.matrice diagonale en testant le carreau
 */
 {
 
 	bool rempli=false;	//reste faux tant que la case n'a pas encore été remplie
-	bool exist=false;	//variable qui devient true si le chiffre qu'on cherche a place existe déja dans la ligne, colonne ou carreau. 
+	bool exist=false;	//variable qui devient true si le chiffre qu'on cherche a place existe déja dans le carreau. 
 
-	if matrice[carreau + i][carreau + j]!=0
+	if (matrice[carreau + i][carreau + j]!=0)
 	{
 		rempli=true;
 	}
@@ -32,7 +32,7 @@ rempli la case i,j de la sous.matrice diagonale en testant le carreau
 
 	int compt=0; 	//element de comtrole pour etre sur de ne pas boucler
 
-	while (rempli==false)&&(compt<OP_MAX)
+	while ((rempli==false)&&(compt<OP_MAX))
 	{
 		elem=aleatoire();
 
@@ -41,7 +41,7 @@ rempli la case i,j de la sous.matrice diagonale en testant le carreau
 		{
 			for (int l=0; l<3; l++)
 			{
-				if matrice[carreau+k][carreau+l]==elem
+				if (matrice[carreau+k][carreau+l]==elem)
 				{
 					exist=true;
 				}
@@ -50,7 +50,7 @@ rempli la case i,j de la sous.matrice diagonale en testant le carreau
 
 
 		//on teste si elem convient et si oui, on rempli la case
-		if exist==false
+		if (exist==false)
 		{
 			matrice[carreau + i][carreau + j]=elem;
 			rempli=true;
@@ -60,7 +60,7 @@ rempli la case i,j de la sous.matrice diagonale en testant le carreau
 
 	}
 
-	if compt==OP_MAX
+	if (compt==OP_MAX)
 	{
 		printf("Error. Boucle échouée.");
 		//break;
