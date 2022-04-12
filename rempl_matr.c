@@ -9,10 +9,9 @@
 //fonction qui remplie les sousmatrices non diagonales
 
 
-int random() {
+int aleatoire() {
     srand(time(NULL));
-    printf("%d\n", rand() % MAX + 1);
-    return (0);
+	return(rand() % MAX + 1);
 }
 
 
@@ -40,7 +39,7 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 
 	while (rempli==false)&&(compt<OP_MAX)
 	{
-		elem=random();
+		elem=aleatoire();
 
 		for (int k=1; k<10; k++)
 		{

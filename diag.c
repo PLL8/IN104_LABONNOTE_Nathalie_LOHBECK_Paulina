@@ -9,7 +9,7 @@
 #define MAX 9
 #define OP_MAX 100
 
-int random() {
+int aleatoire() {
     return (rand() % MAX + 1);
 }
 
@@ -34,7 +34,7 @@ rempli la case i,j de la sous.matrice diagonale en testant le carreau
 
 	while (rempli==false)&&(compt<OP_MAX)
 	{
-		elem=random();
+		elem=aleatoire();
 
 		//tester le carreau
 		for (int k=0; k<3; k++)
