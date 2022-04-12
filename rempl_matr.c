@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 
 #define MAX 9
@@ -17,7 +18,7 @@ int aleatoire() {
 
 
 
-void rempli_case(int* matrice, int i, int j)
+void rempli_case(int** matrice, int i, int j)
 /*
 rempli la case i,j de la matrice en testant les lignes, les colones et le carreau (il faut se placer i,j modulo 3 pour trouver le carreau)
 */
@@ -28,7 +29,7 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 	bool rempli=false;	//reste faux tant que la case n'a pas encore été remplie
 	bool exist=false;	//variable qui devient true si le chiffre qu'on cherche a place existe déja dans la ligne, colonne ou carreau. 
 
-	if matrice[i][j]!=0
+	if (matrice[i][j]!=0)
 	{
 		rempli=true;
 	}
@@ -37,7 +38,7 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 
 	int compt=0; 	//element de comtrole pour etre sur de ne pas boucler
 
-	while (rempli==false)&&(compt<OP_MAX)
+	while ((rempli==false)&&(compt<OP_MAX))
 	{
 		elem=aleatoire();
 
