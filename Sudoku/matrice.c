@@ -36,34 +36,72 @@ int** matrice_vierge (int t){
 
 
 
+//FONCTION DE PAUPAU DANS DIAG
+#define MAX 9
+#define OP_MAX 100
 
-/*//Fonction intérmédiaire qui retourne true si l'entier est déjà présent dans la liste
-bool comparaison(int* liste, int k, int t){
-	for (int i = 0; i<t; i++){
-		if(liste[i] == k){
-			return(true);
-		}
-	}
-	return(false);
+int aleatoire() {
+    return (rand() % MAX + 1);
 }
 
 
-//Fonction qui remplie aléatoirement une matrice
-int** matrce_alea(int t){ //ici t=taille --> 9 cases dans la sous matrices
-	int* ligne = malloc(taille*sizeof(int)); 
-	srand(time(NULL)); //permet d'initialiser pour pouvoir utiliser la fonction rand
-	int k;
-	int i = 0; //on initialise l'endroit où on se place dans la matrice --> pour l'instant on crée juste une liste que l'on transformera en matrice après
-	while (i != t){
-		k = rand() +1; //la fonction rand renvoie un chiffre entre 0 et RAND_MAX
-		if (comparaison(ligne,k)==false){ //si l'entier n'est pas présent dans la liste
-			ligne[i] = k; //on remplie la matrice
-			i++;
-		}
-	}
-
-}
+void rempli_diag_case(int** matrice, int carreau, int i, int j)
+/*
+rempli la case i,j de la sous.matrice diagonale en testant le carreau
 */
+{
+
+	bool rempli=false;	//reste faux tant que la case n'a pas encore été remplie
+	bool exist=false;	//variable qui devient true si le chiffre qu'on cherche a place existe déja dans le carreau. 
+
+	if (matrice[carreau + i][carreau + j]!=0)
+	{
+		rempli=true;
+	}
+
+	int elem;	//le nombre qu'on teste
+
+	int compt=0; 	//element de comtrole pour etre sur de ne pas boucler
+
+	while ((rempli==false)&&(compt<OP_MAX))
+	{
+		elem=aleatoire();
+
+		//tester le carreau
+		for (int k=0; k<3; k++)
+		{
+			for (int l=0; l<3; l++)
+			{
+				if (matrice[carreau+k][carreau+l]==elem)
+				{
+					exist=true;
+				}
+			}
+		}
+
+
+		//on teste si elem convient et si oui, on rempli la case
+		if (exist==false)
+		{
+			matrice[carreau + i][carreau + j]=elem;
+			rempli=true;
+		}
+
+		compt=compt+1;
+
+	}
+
+	if (compt==OP_MAX)
+	{
+		printf("Error. Boucle échouée.");
+		//break;
+	}
+
+}
+
+
+//	A FAIRE : FONCTION QUI REMPLIE CHAQUE CASE DE CHAQUE CARREAU DIAGONALE
+
 
 int main (){
 	int t = taille;
