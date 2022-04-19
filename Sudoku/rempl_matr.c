@@ -11,14 +11,41 @@
 
 
 int aleatoire() {
-    srand(time(NULL));
 	return(rand() % MAX + 1);
+}
+
+//compare si un entier est dans une liste --> retourne true si c'est dans la liste
+
+bool compar(int k, int* ligne, int l){
+	for (int i =0; i<l;i++){
+		if(k == ligne[i]){
+			return(true);
+		}		
+	}
+	return(false);
 }
 
 
 
 
-void rempli_case(int** matrice, int i, int j)
+int* cas(int t, int* ligne){
+	int k;
+	int i = 0;
+	while (i != t ){
+		k = aleatoire();
+		//printf("k : %d\n", k);
+		if(compar(k, ligne, t)==false){ //si k n'est pas dans la liste
+			ligne[i] = k;
+			i++;
+		}
+		//printf("i : %d\n", i);
+	}
+	return(ligne);	
+
+}
+
+
+void rempli_case(int** matrice, int* alea, int i, int j)
 /*
 rempli la case i,j de la matrice en testant les lignes, les colones et le carreau (il faut se placer i,j modulo 3 pour trouver le carreau)
 */
@@ -36,21 +63,22 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 
 	int elem;	//le nombre qu'on teste
 
-	int compt=0; 	//element de comtrole pour etre sur de ne pas boucler
+	int compt=0; 	
 
-	while ((rempli==false)&&(compt<OP_MAX))
+	while (exist==true)
 	{
-		elem=aleatoire();
+		elem=alea[compt];
+		print("%d\n", elem);
 
-		for (int k=1; k<10; k++)
+		for (int k=0; k<9; k++)
 		{
 			//tester les lignes
-			if matrice[i][k]==elem
+			if (matrice[i][k]==elem)
 			{
 				exist=true;
 			}
 			//tester les colonnes
-			else if matrice[k][j]==elem
+			else if (matrice[k][j]==elem)
 			{
 				exist=true;
 			}
@@ -61,7 +89,7 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 		{
 			for (int l=0; l<3; l++)
 			{
-				if matrice[i_carreau+k][j_carreau+l]==elem
+				if (matrice[i_carreau+k][j_carreau+l]==elem)
 				{
 					exist=true;
 				}
@@ -70,7 +98,7 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 
 
 		//on teste si elem convient et si oui, on rempli la case
-		if exist==false
+		if (exist==false)
 		{
 			matrice[i][j]=elem;
 			rempli=true;
@@ -80,7 +108,7 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 
 	}
 
-	if compt==OP_MAX
+	if (compt==8)
 	{
 		printf("Error. Boucle échouée.");
 		//break;
@@ -101,13 +129,17 @@ puis rempli le sous carreau en examinant les lignes et colones
 {
 	int line = carreau / 3;
 	int colo = carreau % 3;
+	int* ligne=malloc(9*sizeof(int));
 
 	for (int i=0; i<3; i++)
 		{
 			for (int j=0; j<3; j++)
 			{
-				rempli_case(matrice, 3*line + i, 3*colo + j);
+				int* alea = cas(9, ligne);
+				rempli_case(matrice, alea, 3*line + i, 3*colo + j);
 			}
+		}
+	free(ligne);
 }
 
 
