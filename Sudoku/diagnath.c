@@ -77,12 +77,11 @@ int* cas(int t, int* ligne){
 
 }
 
-
-void affichageligne(int* ligne, int t){
+/*void affichageligne(int* ligne, int t){
 	for (int i=0; i<t; i++){
 		printf("%d", ligne[i]);
 	}
-}
+}*/
 
 int** carreau (int l){ //ligne = ligne de 9 chiffres aléa; l = 9 = taille
 	//on crée l'espace pour le carreau et on crée la ligne
@@ -127,19 +126,12 @@ int ** diag (int** matrice, int t){
 
 
 
-
+/*
 int main (){
 	srand(time(NULL));
-	/*int* ligne = malloc(taille*sizeof(int));
-	for (int i =0; i<taille; i++){
-		ligne[i] =0;
-	}
-
-	ligne = cas(taille, ligne);*/
-	/*int ** carr = carreau(taille);
-	affichage(taille/3, carr);*/
+	
 	int** area = matrice_vierge(taille); 
 	area = diag(area, taille);
 	affichage(taille, area);
 
-}
+}*/
