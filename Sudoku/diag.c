@@ -10,6 +10,7 @@
 #define OP_MAX 100
 
 int aleatoire() {
+	srand(time(NULL));
     return (rand() % MAX + 1);
 }
 

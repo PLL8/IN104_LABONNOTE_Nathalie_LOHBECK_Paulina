@@ -38,9 +38,10 @@ int** matrice_vierge (int t){
 
 //FONCTION DE PAUPAU DANS DIAG
 #define MAX 9
-#define OP_MAX 100
+#define OP_MAX 10000
 
 int aleatoire() {
+	srand(time(NULL));
     return (rand() % MAX + 1);
 }
 
@@ -103,11 +104,27 @@ rempli la case i,j de la sous.matrice diagonale en testant le carreau
 //	A FAIRE : FONCTION QUI REMPLIE CHAQUE CASE DE CHAQUE CARREAU DIAGONALE
 
 
+//Fonction qui remplie chaque case d'un carreau
+int** carreau (int** matrice, int c, int t){ //carreau numéro c et t = taille/3
+	for (int i =0; i<t; i++){
+		for (int j =0; j<t; j++){
+			printf("carreau %d %d\n", i, j);
+			rempli_diag_case(matrice, c, i, j);
+			affichage(t*3, matrice);
+		}
+	}
+	return(matrice);
+}
+
+
 int main (){
 	int t = taille;
 	int** area = matrice_vierge(t);
 	affichage(t, area);
-
+	area = carreau(area, 0, t/3);
+	area = carreau(area, 4, t/3);
+	area = carreau(area, 8, t/3);
+	affichage(t, area);
 }
 
 
