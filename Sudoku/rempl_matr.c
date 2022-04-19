@@ -2,47 +2,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "diagnath.h"
+
 
 #define MAX 9
 #define OP_MAX 100
+#define taille 9
 
-
-//fonction qui remplie les sousmatrices non diagonales
-
-
-int aleatoire() {
-	return(rand() % MAX + 1);
-}
-
-//compare si un entier est dans une liste --> retourne true si c'est dans la liste
-
-bool compar(int k, int* ligne, int l){
-	for (int i =0; i<l;i++){
-		if(k == ligne[i]){
-			return(true);
-		}		
-	}
-	return(false);
-}
-
-
-
-
-int* cas(int t, int* ligne){
-	int k;
-	int i = 0;
-	while (i != t ){
-		k = aleatoire();
-		//printf("k : %d\n", k);
-		if(compar(k, ligne, t)==false){ //si k n'est pas dans la liste
-			ligne[i] = k;
-			i++;
-		}
-		//printf("i : %d\n", i);
-	}
-	return(ligne);	
-
-}
 
 
 void rempli_case(int** matrice, int* alea, int i, int j)
@@ -68,7 +34,7 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 	while (exist==true)
 	{
 		elem=alea[compt];
-		print("%d\n", elem);
+		printf("%d\n", elem);
 
 		for (int k=0; k<9; k++)
 		{
@@ -118,7 +84,7 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 
 
 
-void sous_matrice(int* matrice, int carreau)
+void sous_matrice(int** matrice, int carreau)
 /*
 fonction qui prend la grande matrice et se place dans le carreau indiqué 
 matrice: 0 1 2 
@@ -144,7 +110,7 @@ puis rempli le sous carreau en examinant les lignes et colones
 
 
 
-void rempli_matri(int* matrice)
+void rempli_matri(int** matrice)
 /*
 rempli les matrices non diagonales
 */
@@ -158,3 +124,15 @@ rempli les matrices non diagonales
 }
 
 
+
+
+int main(){
+	int** matrice=matrice_vierge(taille);
+	affichage(taille, matrice);
+	printf("\n");
+	matrice=diag(matrice, taille);
+	affichage(taille, matrice);
+	printf("\n");
+	rempli_matri(matrice);
+	affichage(taille, matrice);
+}
