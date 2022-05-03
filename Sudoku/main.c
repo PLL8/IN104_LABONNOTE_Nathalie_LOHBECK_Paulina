@@ -16,8 +16,8 @@ int main (){
 	area = diag(area, taille);
 	affichage(taille, area);
 	printf("\n");
-	/*int k = 6;
+	int k = 6;
 	area = retire(area, k, taille);
-	affichage(taille, area);*/
+	affichage(taille, area);
 
 }
