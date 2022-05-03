@@ -5,8 +5,7 @@
 #define taille (9) //on définie la taille de la matrice
 #define MAX 9
 
-#include "matrice_init.h"
-#include "retire.h"
+
 
 //fonction random
 int aleatoire() {
@@ -87,15 +86,4 @@ int ** diag (int** matrice, int t){
 
 
 
-int main (){
-	srand(time(NULL));
-	
-	int** area = matrice_vierge(taille); 
-	area = diag(area, taille);
-	affichage(taille, area);
-	printf("\n");
-	/*int k = 6;
-	area = retire(area, k, taille);
-	affichage(taille, area);*/
 
-}
