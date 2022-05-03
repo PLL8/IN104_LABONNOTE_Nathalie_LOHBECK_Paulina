@@ -5,37 +5,8 @@
 #define taille (9) //on définie la taille de la matrice
 #define MAX 9
 
-
-//FONCTION DANS MATRICE.C
-
-//crée la matrice de 0
-int** matrice_vierge (int t){
-	int** area = malloc(t*sizeof(int*));
-	for (int i = 0; i<t; i++){
-		area[i] = malloc(t*sizeof(int));
-	}
-
-	for (int i =0; i<t; i++){
-		for (int j = 0; j<t; j++){
-			area[i][j] = 0;
-		}
-	}
-	return(area);
-
-}
-
-
-
-//Fonction qui affiche la matrice
-void affichage(int t, int** matrice){
-	for (int i =0; i<t; i++){
-		for (int j =0; j<t; j++){
-			printf("%d ", matrice[i][j]);
-		}
-		printf("\n");
-	}
-
-}
+#include "matrice_init.h"
+#include "retire.h"
 
 //fonction random
 int aleatoire() {
@@ -57,7 +28,6 @@ bool compar(int k, int* ligne, int l){
 	}
 	return(false);
 }
-//la fonction compare marche !
 
 
 
@@ -77,12 +47,8 @@ int* cas(int t, int* ligne){
 
 }
 
-/*void affichageligne(int* ligne, int t){
-	for (int i=0; i<t; i++){
-		printf("%d", ligne[i]);
-	}
-}*/
 
+//Fonction qui crée un carreau à partir d'une ligne de chiffres aléatoires
 int** carreau (int l){ //ligne = ligne de 9 chiffres aléa; l = 9 = taille
 	//on crée l'espace pour le carreau et on crée la ligne
 	int* ligne = malloc(l*sizeof(int));
@@ -95,15 +61,11 @@ int** carreau (int l){ //ligne = ligne de 9 chiffres aléa; l = 9 = taille
 	//On remplie le carreau à partir de la ligne
 	for (int i = 0; i<l/3; i++){
 		carr[0][i] = ligne[i];
-	}
-	for (int i = 0; i<l/3; i++){
 		carr[1][i] = ligne[3+i];
-	}
-	for (int i = 0; i<l/3; i++){
 		carr[2][i] = ligne[6+i];
 	}
 
-	return(carr);
+		return(carr);
 }
 
 
@@ -119,19 +81,21 @@ int ** diag (int** matrice, int t){
 			matrice[i+6][j+6] = carr8[i][j];
 		}
 	}
-	
-
 	return(matrice);
 }
 
 
 
-/*
+
 int main (){
 	srand(time(NULL));
 	
 	int** area = matrice_vierge(taille); 
 	area = diag(area, taille);
 	affichage(taille, area);
+	printf("\n");
+	/*int k = 6;
+	area = retire(area, k, taille);
+	affichage(taille, area);*/
 
-}*/
+}
