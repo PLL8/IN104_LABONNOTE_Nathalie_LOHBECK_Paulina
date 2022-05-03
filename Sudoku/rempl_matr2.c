@@ -3,6 +3,8 @@
 #include <stdbool.h>
 
 #include "diagnath.h"
+#include "matrice_init.h"
+
 
 //#define taille (9)
 #define MAX 9
@@ -38,7 +40,7 @@ int** free_line(int** matrice, int line)
 	int carreau = line / 3;
 	if (carreau==0)
 	{
-		for (int i=0; i<6; i++)
+		for (int i=3; i<9; i++)
 		{
 			matrice[line][i]=0;
 		}
@@ -53,7 +55,7 @@ int** free_line(int** matrice, int line)
 		}
 	}
 	else {
-		for (int i=3; i<9; i++)
+		for (int i=0; i<6; i++)
 		{
 			matrice[line][i]=0;
 		}
@@ -208,12 +210,18 @@ int main(){
 
 	printf("main avant sous_matrice\n");
 
-
+	
 	matrice=rempli_line(matrice, 0,9);
 	matrice=rempli_line(matrice, 1,9);
 	matrice=rempli_line(matrice, 2,9);
 	matrice=rempli_line(matrice, 3,9);
-	
+	matrice=rempli_line(matrice, 4,9);
+	matrice=rempli_line(matrice, 5,9);
+	matrice=rempli_line(matrice, 6,9);
+	matrice=rempli_line(matrice, 7,9);
+	matrice=rempli_line(matrice, 8,9);
+
+
 	affichage(9, matrice);
 
 }
