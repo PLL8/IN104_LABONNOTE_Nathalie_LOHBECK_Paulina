@@ -6,11 +6,12 @@
 #include "matrice_init.h"
 
 
-//#define taille (9)
-#define MAX 9
-//#define OP_MAX 100
+
 
 int* vide_cas(int* alea, int taille)
+/*
+fonction qui vide la ligne qui contient les nombres aléatoires
+*/
 {
 	for (int i=0; i<taille;  i++)
 	{
@@ -22,6 +23,9 @@ int* vide_cas(int* alea, int taille)
 
 
 int zero_in_line(int**mat, int line)
+/*
+teste si il y a un 0 dans la ligne, c'est a dire que le remplissage n'a pas fonctionné
+*/
 { 
 	for(int i=0; i<9; i++)
 	{
@@ -34,9 +38,32 @@ int zero_in_line(int**mat, int line)
 	return(0); 
 }
 
+int zero_in_matrix(int** mat, int size)
+/*
+teste si il y a un 0 dans la matrice, c'est a dire que le remplissage de la matrice n'a pas fonctionné
+*/
+{
+	for(int i=0; i<9; i++)
+	{
+		for (int j=0; j<9; j++)
+		{
+			if (mat[i][j]==0)
+				{
+					return(1);
+				}
+		}
+	}
+	return(0); 
+}
+
+
 
 int** free_line(int** matrice, int line)
+/*
+libère une ligne de la matrice sans changer les diagonales, si le remplissage n'a pas aboutit pour recommencer le remplissage de la ligne
+*/
 {
+	//on cercher quelles cases il faut laisser inchangé pour les diagonales
 	int carreau = line / 3;
 	if (carreau==0)
 	{
@@ -84,7 +111,7 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 	int elem;	//le nombre qu'on teste
 	
 
-	int compt=0; 	
+	int compt=0; 	//variable qui nous donne accès aux valeurs de alea
 
 	while ((rempli==false)&&(compt<9))
 	{
@@ -128,100 +155,87 @@ rempli la case i,j de la matrice en testant les lignes, les colones et le carrea
 		compt=compt+1;
 
 	}
-
-	if (compt==9)
-	{
-		printf("Error. Boucle échouée.");
-	}
+	//si aucun élément ne permet de remplir la case, la case reste 0
 	return matrice; 
 
 }
 
 
 
-int** rempli_line(int** matrice, int line, int taille)
-{
+int rempli_line(int** matrice, int line, int taille, int compteur)
 /*
-fonction qui prend la grande matrice et se place dans le carreau indiqué 
-matrice: 0 1 2 
-		 3 4 5
-		 6 7 8
-puis rempli le sous carreau en examinant les lignes et colones
+fonction qui rempli une ligne de la matrice
 */
-
-	
+{
+	//on creer notre tableau avec les valeures aléatoires
 	int* ligne=malloc(9*sizeof(int));
-	printf("avant cas dans sous-matrice\n");
 	ligne=vide_cas(ligne, 9);
 	int* alea = cas(9, ligne);
-	printf("avant boucles sous_matrice, matrice avec zero %d\n", zero_in_line(matrice, line));
+	int compt_rempli=0;
 
-	while (zero_in_line(matrice, line)==1)
+	while (zero_in_line(matrice, line)==1&&compteur<1000)
+	/*
+	-tant que le remplissage de la ligene n'a pas aboutit, on réinitialise la ligne
+	-le compteur assure de sortir de la boucle, si il n'y a pas de solution (ie matrice remplie) pour la matrice proposée en argument
+	*/
 	{
 		matrice=free_line(matrice, line);
 		alea = vide_cas(alea, 9);
 		alea = cas(9, alea);
+		//on remplit case par case de la ligne, si une case n'as pas de solution, elle reste vide
 		for (int c=0; c<9; c++)
 			{  
 				matrice=rempli_case(matrice, alea, line, c, taille);
-				affichage(9, matrice);
-				printf("\n");
 			}
+		compteur=compteur+1;
 	}
 	free(ligne);
+	//on incremente le compteur pour assurer la terminaison de la boucle 
+	compteur=compteur+1;
 
-	printf("fin\n");
-	return(matrice);
-
+	return(compteur);
 }
 
 
 
-int** rempli_matri(int** matrice, int taille)
+
+int rempli_matrice()
 /*
-rempli les matrices non diagonales
+fonction qui construit entièrement la matrice
 */
-{
-	matrice = rempli_line(matrice, 0, taille);
-	matrice = rempli_line(matrice, 1, taille);
-	matrice = rempli_line(matrice, 2, taille);
-	matrice = rempli_line(matrice, 3, taille);
-	matrice = rempli_line(matrice, 4, taille);
-	matrice = rempli_line(matrice, 5, taille);
-	matrice = rempli_line(matrice, 6, taille);
-	matrice = rempli_line(matrice, 7, taille);
-	matrice = rempli_line(matrice, 8, taille);
-	return(matrice);
-}
-
-
-
-
-int main(){  
+{  
 	srand(time(NULL));
+	//on crée la matrice diagonale
 	int** matrice=matrice_vierge(9);
-	affichage(9, matrice);
-	printf("\n");
 	matrice=diag(matrice, 9);
-	affichage(9, matrice);
-	printf("\n");
 
+	//on initialise nos variables de controle: 
+		//le compteur pour sortir des boucles while si il n'y a pas de solution possible
+		//la variable rempli pour tester si la matrice ne contient plus de 0, c'est a dire que c'est une matrice solution
+	int compteur=0;
+	int rempli=1;
 
+	//tant qu'on a pas de solution, on réinitialise notre matrice: 
+	while(rempli==1)
+	{
 
-	printf("main avant sous_matrice\n");
+		compteur=0;
+		matrice=matrice_vierge(9);
+		matrice=diag(matrice, 9);
+		// on essaie de remplir la matrice diagonale proposée
+		//Rq: la valeur 1000 a été choisi apres plusieurs essais pour déterminer en moyenne la valeur du compteur pour aboutir a une solution (~500), qu'on a doublé pour la boucle while
+		while (compteur<1000&&rempli==1)
+		{
+			for (int i=0; i<9; i++)
+			{
+				compteur=rempli_line(matrice, i,9, compteur);
+			}
+		}
+		
+		//on teste si la matrice est solution
+		rempli=zero_in_matrix(matrice, 9);
+	}
 
-	
-	matrice=rempli_line(matrice, 0,9);
-	matrice=rempli_line(matrice, 1,9);
-	matrice=rempli_line(matrice, 2,9);
-	matrice=rempli_line(matrice, 3,9);
-	matrice=rempli_line(matrice, 4,9);
-	matrice=rempli_line(matrice, 5,9);
-	matrice=rempli_line(matrice, 6,9);
-	matrice=rempli_line(matrice, 7,9);
-	matrice=rempli_line(matrice, 8,9);
-
-
-	affichage(9, matrice);
+	return mtrice;
 
 }
