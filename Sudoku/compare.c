@@ -2,20 +2,28 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+//cette fonction a été testée elle marche 
 
-bool compare(int** arr, int** corr)
+int* compare(int** arr, int** corr, int t)
 {
-	bool correct=true;
-	for (int i=0; i<9; i++)
+	int* coord = malloc(2*sizeof(int)); // liste des coordonnées fausses
+	coord[0] = -1;
+	coord[1] = -1;
+	for (int i=0; i<t; i++)
  	{
- 		for (int j=0; j<9; j++)
+ 		for (int j=0; j<t; j++)
  		{
  			if (arr[i][j]!=corr[i][j])
  			{
- 				correct=false;
+ 				coord[0] = i;
+ 				coord[1] = j;
+ 				return(coord);
  			}
  		}
  	}
- 	return correct;
+ 	return (coord);
 }
+//return [-1,-1] si les matrices sont identiques. Retourne les coordonnées de la première faute sinon
+
+
 

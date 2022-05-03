@@ -5,8 +5,6 @@
 #define taille (9) //on définie la taille de la matrice
 #define MAX 9
 
-
-
 //fonction random
 int aleatoire() {
 
