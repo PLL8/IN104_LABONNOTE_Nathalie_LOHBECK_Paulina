@@ -5,6 +5,8 @@
 //fonction qui retire un nombre k de cases dans chaque ligne de la matrice
 
 #include "diagnath.h"
+#include "rempl_final.h"
+#include "matrice_init.h"
 
 int* retire_ligne (int* ligne, int k, int t){
 	//t = longueur de la ligne
@@ -15,8 +17,8 @@ int* retire_ligne (int* ligne, int k, int t){
 
 	while (i != k){
 		a = aleatoire();
-		if (ligne[i] != 0){
-			ligne[i] = 0;
+		if (ligne[a] != 0){
+			ligne[a] = 0;
 			i++;
 		}
 		
@@ -38,6 +40,17 @@ int** retire(int** matrice, int k, int t){
 	return(matrice);
 
 }
+
+/*int main(){
+	srand(time(NULL));
+	int taille = 9;
+	int k = 6;
+	int** mat = rempli_matrice();
+	affichage(taille, mat);
+	mat = retire(mat,k,taille);
+	printf("nouvelle\n");
+	affichage(taille, mat);
+}*/
 
 
 

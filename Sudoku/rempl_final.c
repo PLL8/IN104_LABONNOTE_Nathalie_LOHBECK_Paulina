@@ -199,12 +199,12 @@ fonction qui rempli une ligne de la matrice
 
 
 
-int rempli_matrice()
+int** rempli_matrice()
 /*
 fonction qui construit entièrement la matrice
 */
 {  
-	srand(time(NULL));
+	//srand(time(NULL));
 	//on crée la matrice diagonale
 	int** matrice=matrice_vierge(9);
 	matrice=diag(matrice, 9);
@@ -236,6 +236,6 @@ fonction qui construit entièrement la matrice
 		rempli=zero_in_matrix(matrice, 9);
 	}
 
-	return mtrice;
+	return matrice;
 
 }

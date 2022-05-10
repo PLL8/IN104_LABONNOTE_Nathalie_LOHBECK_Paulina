@@ -40,28 +40,36 @@ int** choix (int** matrice, int t){
 
 
 	//choix de la case et du chiffre dans la case
-	scanf("Quelle ligne ? %d", &x);
+	printf("Quelle ligne ?\n");
+	scanf("%d", &x);
 	while (x<1 || x>9){
 		printf("Erreur le numéro doit être compris entre 1 et 9\n");
-		scanf("Quelle ligne ? %d", &x);
+		printf("Quelle ligne ?\n");
+		scanf("%d", &x);
 	}
 
-	scanf("Quelle colonne ? %d", &y);
+	printf("Quelle colonne ?\n");
+	scanf("%d", &y);
 	while (y<1 || y>9){
 		printf("Erreur le numéro doit être compris entre 1 et 9\n");
-		scanf("Quelle colonne ? %d", &y);
+		printf("Quelle colonne ?\n");
+		scanf("%d", &y);
 	}
 
-	scanf("Quelle chiffre ? %d", &k);
+
+	printf("Quel chiffre ?\n");
+	scanf("%d", &k);
 	while (k<1 || k>9){
 		printf("Erreur le numéro doit être compris entre 1 et 9\n");
-		scanf("Quelle chiffre ? %d", &k);
+		printf("Quel chiffre ?\n");
+		scanf("%d", &k);
 	}
+	
 
-
-	//On remplie la case
 	matrice[x-1][y-1] = k;
-
+	
+	affichage(t, matrice);
+	
 	return(matrice);
 
 
