@@ -35,8 +35,8 @@ struct coord {
 
 struct pacman{
 	struct coord coo; //coordonnées du pacman
-	int nx; //direction de déplacement horizontal
-	int ny; //direction de déplacement vertical
+	int nx; //direction de déplacement vertical
+	int ny; //direction de déplacement horizontal
 	int lives;
 	int food;
 };
@@ -89,12 +89,13 @@ struct ghost place_init_G(int** field){
 //fonction qui initialise le pacman --> erreur de segmentation
 int** initialize (int** field){
 
+	struct ghost* list_ghost = malloc(G*sizeof(struct ghost)); //liste des ghosts
 	//on initialise les ghosts 
 	for (int i = 0; i<G; i++){
 		struct ghost gi = place_init_G(field); //fonction qui place un ghost
 		field[gi.goo.x][gi.goo.y] = 3 ;//on update le field
+		list_ghost[i]=gi; //on sauvegarde le ghost dans list of ghosts
 	}
-
 
 	//On initialise le pacman
 	struct coord p0 = {1,1};
@@ -107,7 +108,11 @@ int** initialize (int** field){
 
 }
 
-
+void affichage_ghost (struct ghost gho)
+{
+	print("coordonées (%d, %d)\n", gho.goo.x, gho.goo.y);
+	printf("directions nx=%d, ny=%d\n", gho.gx, gho.gy);
+}
 
 /////////////
 
@@ -123,7 +128,11 @@ void affichage_base(int** matrice){
 
 }
 
-
+void affichage_ghost (struct ghost gho)
+{
+	print("coordonées (%d, %d)\n", gho.goo.x, gho.goo.y);
+	printf("directions nx=%d, ny=%d\n", gho.gx, gho.gy);
+}
 
 
 
