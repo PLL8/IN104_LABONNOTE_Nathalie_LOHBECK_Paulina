@@ -13,8 +13,12 @@ void affichage(int** area)
 		{
 			if(area[i][j]==0)
 			{
+				printf(".");
+			} else if (area[i][j]==-1) 
+			{
 				printf(" ");
-			} else if (area[i][j]==1)
+			}
+			else if (area[i][j]==1)
 			{
 				printf("#");
 			} else if (area[i][j]==2)
@@ -105,4 +109,6 @@ int main()
 	field=construction_field(field);
 	printf("%d\n", field[15][39]);
 	affichage(field);
-}*/
+}
+*/
+
