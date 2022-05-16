@@ -2,11 +2,12 @@
 #include <stdbool.h>
 #include<stdio.h>
 
-#include "field.h"
+//#include "field.h"
 
 #define H (30) //height
 #define W (60) //width
 #define G (10) //nombre de fantômes
+#define V (3)  //nombre de vies
 
 /*
 Manière de remplir le field :
@@ -89,29 +90,22 @@ struct ghost place_init_G(int** field){
 //fonction qui initialise le pacman --> erreur de segmentation
 int** initialize (int** field){
 
-	struct ghost* list_ghost = malloc(G*sizeof(struct ghost)); //liste des ghosts
+	//struct ghost* list_ghost = malloc(G*sizeof(struct ghost)); //liste des ghosts
 	//on initialise les ghosts 
 	for (int i = 0; i<G; i++){
 		struct ghost gi = place_init_G(field); //fonction qui place un ghost
 		field[gi.goo.x][gi.goo.y] = 3 ;//on update le field
-		list_ghost[i]=gi; //on sauvegarde le ghost dans list of ghosts
+		//list_ghost[i]=gi; //on sauvegarde le ghost dans list of ghosts
 	}
 
 	//On initialise le pacman
 	struct coord p0 = {1,1};
-	int vie = 3; //on initialise le nombre de vie du pacman
-	struct pacman pac = {p0,0,0,vie,0};
+	struct pacman pac = {p0,0,0,V,0};
 
 	field[p0.x][p0.y]=2; 
 
 	return(field);
 
-}
-
-void affichage_ghost (struct ghost gho)
-{
-	print("coordonées (%d, %d)\n", gho.goo.x, gho.goo.y);
-	printf("directions nx=%d, ny=%d\n", gho.gx, gho.gy);
 }
 
 /////////////
@@ -128,18 +122,18 @@ void affichage_base(int** matrice){
 
 }
 
-void affichage_ghost (struct ghost gho)
+/*void affichage_ghost (struct ghost gho)
 {
 	print("coordonées (%d, %d)\n", gho.goo.x, gho.goo.y);
 	printf("directions nx=%d, ny=%d\n", gho.gx, gho.gy);
-}
+}*/
 
 
-
+/*
 int main (){
 	srand(time(NULL));
 
-	/*///test
+	///test
 	int** area = malloc(H*sizeof(int*));
 	for (int i = 0; i<H; i++){
 		area[i] = malloc(W*sizeof(int));
@@ -151,7 +145,7 @@ int main (){
 	area[2][2] = 1;
 	affichage(area);
 	
-	////*/
+	////
 
 
 	//printf("field initial\n");
@@ -163,4 +157,4 @@ int main (){
 
 	
 }
-
+*/
