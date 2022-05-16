@@ -6,7 +6,7 @@
 
 
 
-//fonction qui copie la matrice correcte --> cette fonction marche
+//fonction qui copie la matrice correcte
 int** copie (int** matrice, int t){
 	int** corr = malloc(t*sizeof(int *));
 	for (int i=0; i<t; i++){
@@ -18,7 +18,7 @@ int** copie (int** matrice, int t){
 	return(corr);
 }
 
-//fonction qui regarde si la matrice est pleine--> cette fonction marche
+//fonction qui regarde si la matrice est pleine
 bool matri_pleine (int** matrice, int t){
 	for (int i =0; i<t; i++){
 		for (int j=0; j<t; j++){
