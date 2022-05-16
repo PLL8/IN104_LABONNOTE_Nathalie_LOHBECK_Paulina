@@ -7,6 +7,14 @@
 #define W (4) //width
 #define G (2) //nombre de fantômes
 
+/*
+Manière de remplir le field :
+ - 0 = nourriture
+ - 1 = mur (inaccessible)
+ - 2 = le pacman
+ - 3 = les ghosts
+ */
+
 
 //fonctions qui renvoient des chiffres alea entre 0 et H-1 et W-1 
 int aleatoireH() {
@@ -25,30 +33,31 @@ struct coord {
 
 
 struct pacman{
-	struct coord coo;
-	int nx;
-	int ny;
+	struct coord coo; //coordonnées du pacman
+	int nx; //direction de déplacement horizontal
+	int ny; //direction de déplacement vertical
 	int lives;
 	int food;
 };
 
 struct ghost {
 	struct coord goo;
-	int gx; //direction du fantôme
+	int gx; 
 	int gy; 
 };
 
 
 //générer un jeu de coordonnées
 struct coord genere(int** field){
-	int h = aleatoireH();
-	int w = aleatoireW();
-	while(field[h][w]!=0){
-		h = aleatoireH();
-		w = aleatoireW();
+	int x = aleatoireH();
+	int y = aleatoireW();
+	while(field[x][y]!=0){ //on cherche un lieu de la map où il n'y a pas encore de personnage
+		x = aleatoireH();
+		y = aleatoireW();
 	}
 
-	struct coord coo ={h,w};
+	struct coord coo ={x,y};
+	return(coo);
 }
 
 
@@ -56,12 +65,12 @@ struct coord genere(int** field){
 /*On initialise le Pacman*/
 
 //fonction qui place un fantôme 
-struct ghost place_G(int** field){
+struct ghost place_init_G(int** field){
 	struct ghost gho;
 
 	//on génère aléatoirement les coordonnées
 	struct coord coo = genere(field);
-	while(coo.x == 1 || coo.y == 1){
+	while(coo.x == 1 && coo.y == 1){ // la place (1,1) est utilisée pour placer le pacman
 		coo = genere(field);
 	} 
 
@@ -72,7 +81,7 @@ struct ghost place_G(int** field){
 	return(gho);
 
 }
-//normalement cette fonction marche
+
 
 
 
@@ -81,16 +90,17 @@ int** initialize (int** field){
 
 	//on initialise les ghosts 
 	for (int i = 0; i<G; i++){
-		struct ghost gi = place_G(field); //fonction qui place un ghost
+		struct ghost gi = place_init_G(field); //fonction qui place un ghost
 		field[gi.goo.x][gi.goo.y] = 3 ;//on update le field
 	}
 
 
 	//On initialise le pacman
 	struct coord p0 = {1,1};
-	struct pacman pac = {p0,0,0,3,0};
+	int vie = 3; //on initialise le nombre de vie du pacman
+	struct pacman pac = {p0,0,0,vie,0};
 
-	field[p0.x][p0.y]=2;
+	field[p0.x][p0.y]=2; 
 
 	return(field);
 
@@ -133,7 +143,7 @@ int main (){
 	
 	////
 
-	
+	printf("fonction initilaize\n");
 	area = initialize(area);
 	affichage(area);
 	
