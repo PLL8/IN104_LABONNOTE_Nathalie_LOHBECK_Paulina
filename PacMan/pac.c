@@ -2,10 +2,11 @@
 #include <stdbool.h>
 #include<stdio.h>
 
+#include "field.h"
 
-#define H (3) //height
-#define W (4) //width
-#define G (2) //nombre de fantômes
+#define H (30) //height
+#define W (60) //width
+#define G (10) //nombre de fantômes
 
 /*
 Manière de remplir le field :
@@ -112,7 +113,7 @@ int** initialize (int** field){
 
 
 //fonction affichage
-void affichage(int** matrice){
+void affichage_base(int** matrice){
 	for (int i =0; i<H; i++){
 		for (int j =0; j<W; j++){
 			printf("%d ", matrice[i][j]);
@@ -129,7 +130,7 @@ void affichage(int** matrice){
 int main (){
 	srand(time(NULL));
 
-	///test
+	/*///test
 	int** area = malloc(H*sizeof(int*));
 	for (int i = 0; i<H; i++){
 		area[i] = malloc(W*sizeof(int));
@@ -141,11 +142,16 @@ int main (){
 	area[2][2] = 1;
 	affichage(area);
 	
-	////
+	////*/
 
-	printf("fonction initilaize\n");
+
+	//printf("field initial\n");
+	int** area = construction_field();
+	//affichage(area);
+	printf("Jeu à l'instant initial\n");
 	area = initialize(area);
 	affichage(area);
+
 	
 }
 

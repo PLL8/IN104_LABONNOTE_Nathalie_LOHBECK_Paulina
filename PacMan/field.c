@@ -31,7 +31,7 @@ void affichage(int** area)
 
 
 
-int** construction_field(int** field)
+int** construction_field()
 {
 
 
@@ -69,6 +69,16 @@ int** construction_field(int** field)
 		};
 
 
+	//on crée la mémoire 
+	int** field=malloc(H*sizeof(int*));
+	//printf("allocation ok\n");
+	for(int i=0; i<H; i++)
+	{
+		field[i]=malloc(W*sizeof(int));
+		//printf("allocation line ok\n");
+	}
+	
+	//on remplie la matrice
 	for (int i=0; i<H; i++)
 	{
 		for(int j=0; j<W; j++)
@@ -78,11 +88,11 @@ int** construction_field(int** field)
 	}
 
 
-		return(field);
+	return(field);
 	
 }
 
-
+/*
 int main()
 {
 	int** field=malloc(H*sizeof(int*));
@@ -95,4 +105,4 @@ int main()
 	field=construction_field(field);
 	printf("%d\n", field[15][39]);
 	affichage(field);
-}
+}*/
