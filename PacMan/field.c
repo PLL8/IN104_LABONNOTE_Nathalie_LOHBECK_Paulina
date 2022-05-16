@@ -5,13 +5,25 @@
 #define W (60)
 #define H (30)
 
-void affichage(char** area)
+void affichage(int** area)
 {
-	for (int i=0; i<W; i++)
+	for (int i=0; i<H; i++)
 	{
-		for (int j=0; j<H; j++)
+		for (int j=0; j<W; j++)
 		{
-			printf("%c", area[i][j]);
+			if(area[i][j]==0)
+			{
+				printf(" ");
+			} else if (area[i][j]==1)
+			{
+				printf("#");
+			} else if (area[i][j]==2)
+			{
+				printf("P");
+			} else if (area[i][j]==3)
+			{
+				printf("G");
+			}	
 		}
 		printf("\n");
 	}
@@ -19,11 +31,11 @@ void affichage(char** area)
 
 
 
-int main()
+int** construction_field(int** field)
 {
-	int** area [H][W];
 
-	int field[H][W]= {
+
+	int field_draft[H][W]= {
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,1},
@@ -57,12 +69,30 @@ int main()
 		};
 
 
-	//int tab{]{]={{1,2,3},{1,2,3},{1,2,3}};
-	//int** tab{]={{1,1,},{2,2},{3,3}};
-	//int* line = malloc(60,*sizeof(int));
-	//int tab{2]{3]={{1,2,3},{4,5,6}};
-	//tab{0},{0},=1,;
+	for (int i=0; i<H; i++)
+	{
+		for(int j=0; j<W; j++)
+		{
+			field[i][j]=field_draft[i][j];
+		}
+	}
 
-	return 0;
+
+		return(field);
+	
 }
 
+
+int main()
+{
+	int** field=malloc(H*sizeof(int*));
+	printf("allocation ok\n");
+	for(int i=0; i<H; i++)
+	{
+		field[i]=malloc(W*sizeof(int));
+		printf("allocation line ok\n");
+	}
+	field=construction_field(field);
+	printf("%d\n", field[15][39]);
+	affichage(field);
+}
