@@ -87,15 +87,16 @@ struct ghost place_init_G(int** field){
 
 
 
-//fonction qui initialise le pacman --> erreur de segmentation
-int** initialize (int** field, struct ghost* list_ghost){
+//fonction qui initialise le pacman 
+/*struct ghost* list_ghost*/
+int** initialize (int** field){
 
 	//struct ghost* list_ghost = malloc(G*sizeof(struct ghost)); //liste des ghosts --> à mettre dans le main
 	//on initialise les ghosts 
 	for (int i = 0; i<G; i++){
 		struct ghost gi = place_init_G(field); //fonction qui place un ghost
 		field[gi.goo.x][gi.goo.y] = 3 ;//on update le field
-		list_ghost[i]=gi; //on sauvegarde le ghost dans list of ghosts
+		//list_ghost[i]=gi; //on sauvegarde le ghost dans list of ghosts
 	}
 
 	//On initialise le pacman
@@ -121,20 +122,20 @@ void affichage_base(int** matrice){
 	}
 
 }
-
+/*
 void affichage_ghost (struct ghost gho)
 {
 	printf("coordonées (%d, %d)\n", gho.goo.x, gho.goo.y);
 	printf("directions nx=%d, ny=%d\n", gho.gx, gho.gy);
-}
+}*/
 
 
-
+/*
 int main (){
 	srand(time(NULL));
 
 	///test
-	/*
+	
 	int** area = malloc(H*sizeof(int*));
 	for (int i = 0; i<H; i++){
 		area[i] = malloc(W*sizeof(int));
@@ -145,21 +146,25 @@ int main (){
 	area[0][0]=1;
 	area[2][2] = 1;
 	affichage(area);
-	*/
+	
 	
 	////
 
 
 	//printf("field initial\n");
 	int** area = construction_field();
-	//affichage(area);
+	affichage(area);
+	area = initialize(area);
+	affichage(area);
+	
+	
 	struct ghost* list_ghost = malloc(G*sizeof(struct ghost));
 	printf("Jeu à l'instant initial\n");
 	area = initialize(area, list_ghost);
 	affichage(area);
 
 	affichage_ghost(list_ghost[0]);
-
 	
-}
+	
+}*/
 

@@ -40,7 +40,7 @@ int main(){
 	//on place les éléments --> ça marche
 	area = initialize(area);
 
-	//on initialise le pacman
+	//on initialise le pacman (il est déjà placé sur le field mais on déclare ici le struct pour le modifier)
 	struct coord coo = {1,1}; //les coordonnées initiales 
 	struct pacman pac = {coo, 0, 0, V, 0};
 
@@ -59,7 +59,7 @@ int main(){
 		//on déplace les fantômes
 
 
-		area[pac.coo.x][pac.coo.y] = -1; //là où était placé le pacman on met -1
+		//area[pac.coo.x][pac.coo.y] = -1; //là où était placé le pacman on met -1
 
 	}
 

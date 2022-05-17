@@ -24,6 +24,8 @@ A faire :
  * d = 100
 */
 
+//les fonctions sans ghosts marchent !
+
 
 //Fonction de demande au joueur --> ça marche !
 struct pacman choix (struct pacman pac){
@@ -65,7 +67,7 @@ struct pacman deplace(struct pacman pac){
 
     if (pac.nx == 1){
         pac.coo.x = pac.coo.x + 1; //on actualise la position
-        printf("mise à jour x :%d\n", pac.coo.x);
+        //printf("mise à jour x :%d\n", pac.coo.x);
         pac.nx = 0; //on réinitialise la direction
     }
 
@@ -109,7 +111,7 @@ struct pacman gain(struct pacman pac, int** field){
 //on update pas le field ici on le fera dans le main
 
 //fonction pour tester si un element est dans un tableau 2*G (utiliser pour ne pas mettre deux ghosts dans la meme case)
-
+/*
 int in_list(int** list_coord, int* coord)
 {
     int x=coord[0];
@@ -220,10 +222,10 @@ struct ghost* next_ghost(struct ghost* list_ghosts, int** field)
 
     return(list_ghosts); 
 }
+*/
 
 
-
-
+/*
 int main(){
     struct coord p0 = {1,1};
     struct pacman pac = {p0,0,0,0,0};
@@ -248,5 +250,5 @@ int main(){
     //printf("avec modif\n");
     //affichage_base(area);
 
-}
+}*/
 

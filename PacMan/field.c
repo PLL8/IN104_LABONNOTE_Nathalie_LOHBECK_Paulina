@@ -5,6 +5,8 @@
 #define W (60)
 #define H (30)
 
+//cette fonction marche
+
 void affichage(int** area)
 {
 	for (int i=0; i<H; i++)
@@ -109,6 +111,6 @@ int main()
 	field=construction_field(field);
 	printf("%d\n", field[15][39]);
 	affichage(field);
-}
-*/
+}*/
+
 
