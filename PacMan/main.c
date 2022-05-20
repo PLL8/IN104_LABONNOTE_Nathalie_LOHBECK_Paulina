@@ -44,16 +44,31 @@ int main(){
 	struct coord coo = {1,1}; //les coordonnées initiales 
 	struct pacman pac = {coo, 0, 0, V, 0};
 
+	/*
+	affichage(area);
+	printf("init : x = %d, y=%d\n",pac.coo.x, pac.coo.y);
+	pac = choix(pac); 
+	pac = deplace(pac);
+	pac = gain(pac, area);
+	printf("après : x = %d, y=%d\n",pac.coo.x, pac.coo.y);
+	*/
+
+	printf("Pacman initial :\n");
+	printf("vies : %d, coord : x = %d x=%d, food = %d\n", pac.lives, pac.coo.x, pac.coo.y, pac.food);
 
 	while(pac.lives != 0 && verif(area) == true){
 		
 
 		//fonctions dans jeu.c
-		affichage(area);
+		//affichage(area);
+		//ça marche mais ça m'affichage quand même un message d'erreur --> le pacman est bien mis à jour --> dans jeu.c
 		pac = choix(pac); 
 		pac = deplace(pac);
 		pac = gain(pac, area); // update les valeurs du pacman
 		area[pac.coo.x][pac.coo.y] = 2; // on update le field
+		
+		printf("Pacman boucle :\n");
+		printf("vies : %d, coord : x = %d x=%d, food = %d\n", pac.lives, pac.coo.x, pac.coo.y, pac.food);
 
 
 		//on déplace les fantômes
