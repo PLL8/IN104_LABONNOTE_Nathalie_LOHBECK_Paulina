@@ -6,7 +6,7 @@
 
 #define H (30) //height
 #define W (60) //width
-#define G (10) //nombre de fantômes
+#define G (6) //nombre de fantômes
 #define V (3)  //nombre de vies
 
 /*
@@ -87,16 +87,14 @@ struct ghost place_init_G(int** field){
 
 
 
-//fonction qui initialise le pacman 
-/*struct ghost* list_ghost*/
-int** initialize (int** field){
+//fonction qui initialise le pacman et la liste de ghosts
+int** initialize (int** field, struct ghost* list_ghost){
 
-	//struct ghost* list_ghost = malloc(G*sizeof(struct ghost)); //liste des ghosts --> à mettre dans le main
 	//on initialise les ghosts 
 	for (int i = 0; i<G; i++){
 		struct ghost gi = place_init_G(field); //fonction qui place un ghost
 		field[gi.goo.x][gi.goo.y] = 3 ;//on update le field
-		//list_ghost[i]=gi; //on sauvegarde le ghost dans list of ghosts
+		list_ghost[i]=gi; //on sauvegarde le ghost dans list of ghosts
 	}
 
 	//On initialise le pacman
@@ -108,6 +106,31 @@ int** initialize (int** field){
 	return(field);
 
 }
+
+int** initialize_pac (int** field){
+
+	//On initialise le pacman
+	struct coord p0 = {1,1};
+	struct pacman pac = {p0,0,0,V,0};
+
+	field[p0.x][p0.y]=2; 
+
+	return(field);
+
+}
+
+
+struct ghost* list_ghosts (int** field, struct ghost* list_ghost){
+
+	//on initialise les ghosts 
+	for (int i = 0; i<G; i++){
+		struct ghost gi = place_init_G(field); //fonction qui place un ghost
+		list_ghost[i]=gi; //on sauvegarde le ghost dans list of ghosts
+	}
+
+	return(list_ghost);
+}
+
 
 /////////////
 
@@ -122,16 +145,20 @@ void affichage_base(int** matrice){
 	}
 
 }
-/*
+
 void affichage_ghost (struct ghost gho)
 {
 	printf("coordonées (%d, %d)\n", gho.goo.x, gho.goo.y);
 	printf("directions nx=%d, ny=%d\n", gho.gx, gho.gy);
-}*/
+}
 
 
-/*
+
 int main (){
+
+	printf("main\n");
+
+	
 	srand(time(NULL));
 
 	///test
@@ -143,28 +170,44 @@ int main (){
 			area[i][j]=0;
 		}
 	}
-	area[0][0]=1;
-	area[2][2] = 1;
-	affichage(area);
+	//area[0][0]=1;
+	//area[2][2] = 1;
+	//affichage(area);
 	
 	
 	////
 
 
 	//printf("field initial\n");
-	int** area = construction_field();
+	//int** area = construction_field();
+	area = construction_field();
 	affichage(area);
-	area = initialize(area);
-	affichage(area);
+	//area = initialize(area);
+	//affichage(area);
 	
 	
+	//test list_ghost et initialize: ok
+	/*
 	struct ghost* list_ghost = malloc(G*sizeof(struct ghost));
 	printf("Jeu à l'instant initial\n");
-	area = initialize(area, list_ghost);
+	area = initialize_pac(area);
 	affichage(area);
 
-	affichage_ghost(list_ghost[0]);
+
+	//test affichage ghost et list_ghost: ok
+	
+	printf("ghost1\n");
+	affichage_ghost(place_init_G(area));
+	printf("ghost2\n");
+	affichage_ghost(place_init_G(area));
+
+	free(list_ghost); 
+	*/
+	int* test=malloc(9*sizeof(int));
+	free(test);
+
+	free(area);
 	
 	
-}*/
+}
 

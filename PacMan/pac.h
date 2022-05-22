@@ -26,7 +26,7 @@ struct ghost {
 
 struct coord genere(int** field);
 struct ghost place_init_G(int** field);
-int** initialize(int** field);
+int** initialize(int** field, struct ghost* list_ghost);
 void affichage_ghost (struct ghost gho);
 void affichage_base(int** matrice);
 
