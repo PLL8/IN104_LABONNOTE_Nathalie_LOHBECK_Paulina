@@ -26,7 +26,7 @@ int main (){
 
 	//matrice dont on a enlevé k chiffres par ligne
 	printf("Matrice trouée\n");
-	int k = 6; /// nombre de trucs à enlever ar ligne
+	int k = 1; /// nombre de trucs à enlever ar ligne
 	area = retire(area, k, taille); //fonction qui retire k chiffres par ligne
 	affichage(taille, area);
 	printf("\n");

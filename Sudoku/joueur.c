@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "matrice_init.h"
+
 
 
 //fonction qui copie la matrice correcte

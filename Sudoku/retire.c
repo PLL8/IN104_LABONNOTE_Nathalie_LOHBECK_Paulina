@@ -5,8 +5,7 @@
 //fonction qui retire un nombre k de cases dans chaque ligne de la matrice
 
 #include "diagnath.h"
-#include "rempl_final.h"
-#include "matrice_init.h"
+
 
 int* retire_ligne (int* ligne, int k, int t){
 	//t = longueur de la ligne
