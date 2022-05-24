@@ -54,18 +54,25 @@ int main(){
 	*/
 
 	printf("Pacman initial :\n");
-	printf("vies : %d, coord : x = %d x=%d, food = %d\n", pac.lives, pac.coo.x, pac.coo.y, pac.food);
+	printf("vies : %d, coord : x = %d y=%d, food = %d\n", pac.lives, pac.coo.x, pac.coo.y, pac.food);
 
 	while(pac.lives != 0 && verif(area) == true){
 		
 
 		//fonctions dans jeu.c
-		//affichage(area);
+		affichage(area);
+		area[pac.coo.x][pac.coo.y] = -1; //là où était placé le pacman on met -1
+		printf("test");
+		affichage(area);
 		//ça marche mais ça m'affichage quand même un message d'erreur --> le pacman est bien mis à jour --> dans jeu.c
 		pac = choix(pac); 
 		pac = deplace(pac);
 		pac = gain(pac, area); // update les valeurs du pacman
 		area[pac.coo.x][pac.coo.y] = 2; // on update le field
+		//il ne sort pas de la boucle dans jeu.c --> il n'affiche pas le field après choix.œ	
+		printf("après choix");
+		affichage(area);
+		
 		
 		printf("Pacman boucle :\n");
 		printf("vies : %d, coord : x = %d x=%d, food = %d\n", pac.lives, pac.coo.x, pac.coo.y, pac.food);
@@ -74,7 +81,7 @@ int main(){
 		//on déplace les fantômes
 
 
-		//area[pac.coo.x][pac.coo.y] = -1; //là où était placé le pacman on met -1
+		area[pac.coo.x][pac.coo.y] = -1; //là où était placé le pacman on met -1
 
 	}
 
